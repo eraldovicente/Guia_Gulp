@@ -19,30 +19,48 @@
 //     gulp.watch('./origem', ['myTask']);
 // });
 
-const gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer');
+// const gulp = require('gulp'),
+//     sass = require('gulp-sass'),
+//     autoprefixer = require('gulp-autoprefixer');
 
 // ./scss/*.scss    - Busca por todos os arquivos com a extesão .scss
 // ./scss/*/*.scss  - Busca em todos os diretorios filhos de scss arquivos com a extensão .scss
 // ./scss/**/*.scss - Busca em todos os subdiretorios de scss por arquivos .scss 
 
-gulp.task('sass', () =>
-    gulp.src('./scss/*.scss')
-        .pipe(sass({
-            outputStyle: 'expanded', // ou 'compact' ou 'compressed' ou 'nested'
-            sourceComments: true
-        }))
-        .pipe(autoprefixer({
-            versions: ['last 2 browsers']
-        }))
-        .pipe(gulp.dest('./css'))
-);
+// gulp.task('sass', () =>
+//     gulp.src('./scss/*.scss')
+//         .pipe(sass({
+//             outputStyle: 'expanded', // ou 'compact' ou 'compressed' ou 'nested'
+//             sourceComments: true
+//         }))
+//         .pipe(autoprefixer({
+//             versions: ['last 2 browsers']
+//         }))
+//         .pipe(gulp.dest('./css'))
+// );
 
 // No gulp 4.x, você precisa passar uma função. A maneira usual de fazer isso no gulp 4.x é 
 // passar uma gulp.series()invocação com apenas um nome de tarefa. Isso retorna uma função que
 // executa apenas a tarefa especificada:
 
+// gulp.task('default', () => {
+//     gulp.watch('./scss/*.scss', gulp.series('sass'));
+// });
+
+
+//------------------------------------------------------------------
+
+const gulp = require('gulp'),
+    pug = require('gulp-pug');
+
+gulp.task('pug', () => 
+    gulp.src('./pug/*.pug')
+        .pipe(pug({
+            pretty: true
+        }))
+        .pipe(gulp.dest('./view'))
+);
+
 gulp.task('default', () => {
-    gulp.watch('./scss/*.scss', gulp.series('sass'));
+    gulp.watch('./pug/*.pug', gulp.series('pug'));
 });
