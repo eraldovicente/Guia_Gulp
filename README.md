@@ -1,2 +1,2 @@
-# Guia_Gup
-Aprendendo a usar o Gup
+# Guia_Gulp
+Aprendendo a usar o Gulp
