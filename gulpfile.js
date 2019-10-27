@@ -51,7 +51,8 @@
 //------------------------------------------------------------------
 
 const gulp = require('gulp'),
-    pug = require('gulp-pug');
+    pug = require('gulp-pug'),
+    browserSync = require('browser-sync').create();
 
 gulp.task('pug', () => 
     gulp.src('./pug/*.pug')
@@ -60,6 +61,13 @@ gulp.task('pug', () =>
         }))
         .pipe(gulp.dest('./view'))
 );
+
+gulp.task('refresh', () => {
+    browserSync.init({
+        server: './'
+    });
+    gulp.watch('./*.html').on('change', browserSync.reload);
+});
 
 gulp.task('default', () => {
     gulp.watch('./pug/*.pug', gulp.series('pug'));
