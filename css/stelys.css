@@ -1,0 +1,14 @@
+/* line 3, scss/stelys.scss */
+body {
+  background: blue;
+}
+
+/* line 5, scss/stelys.scss */
+body p {
+  color: blue;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
